@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>数当てゲーム</title>
     <link rel="stylesheet" href="game.css" />
+    <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
     <div class="container">
       <div class="header">
         <span>数当てゲーム</span>
-        <button class="close">✖</button>
+        <button onclick="showPopup('ゲームが終了しました')" id="close-btn">✖</button>
       </div>
 
       <div class="points">現在のポイント : <span id="points">10000</span></div>
@@ -28,9 +29,9 @@
 
       <table class="result-table">
         <tr>
-          <th>回数</th>
-          <th>入力数字</th>
-          <th>結果</th>
+          <td>回数</td>
+          <td id="input_num">入力数字</td>
+          <td id="result">結果</td>
         </tr>
         <tbody id="result-body">
           <tr>
@@ -86,5 +87,14 @@
         </tbody>
       </table>
     </div>
+    <!-- 팝업화면 -->
+    <div id="popup" class="popup">
+      <div class="popup-content">
+        <h2>ゲーム結果</h2>
+        <p id="popup-message">結果を表示します</p>
+        <button onclick="closePopup()">閉じる</button>
+      </div>
+    </div>
   </body>
+  <script src="popup.js"></script>
 </html>

@@ -24,10 +24,17 @@ body {
   padding: 10px;
   font-size: 18px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  padding: 10px;
 }
 
-.close {
+.header span {
+  flex-grow: 1; /* 가운데로 보내기 */
+  text-align: center;
+}
+
+#close-btn {
   background: none;
   border: none;
   color: white;
@@ -37,17 +44,21 @@ body {
 
 .points {
   margin: 15px 0;
-  font-weight: bold;
+  text-align: right;
 }
 
 .game-area {
-  margin: 15px 0;
+  margin: 25px 25px;
+}
+
+.game-area p {
+  text-align: left;
 }
 
 input {
-  width: 30px;
+  width: 18px;
   text-align: center;
-  margin: 0 5px;
+
   font-size: 18px;
 }
 
@@ -58,19 +69,32 @@ button {
   cursor: pointer;
 }
 
+#check-btn {
+  margin: 0 0 0 30px;
+  font-size: 15px;
+}
+
 .result-table {
-  width: 100%;
-  margin-top: 20px;
+  width: 90%;
+  margin: 20px 0 0 20px;
   border-collapse: collapse;
 }
 
-.result-table th,
+#input_num {
+  width: 30%;
+}
+
+#result {
+  width: 45%;
+}
+
 .result-table td {
+  background-color: #ddd;
   border: 1px solid black;
   padding: 5px;
   text-align: center;
 }
 
-.result-table th {
-  background-color: #ddd;
+#result-body td {
+  background-color: white;
 }
