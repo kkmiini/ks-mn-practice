@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数当てゲーム</title>
+    <link rel="stylesheet" href="game.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <span>数当てゲーム</span>
+        <button class="close">✖</button>
+      </div>
+
+      <div class="points">現在のポイント : <span id="points">10000</span></div>
+
+      <div class="game-area">
+        <p>隠れ数字 : <span class="hidden-number">* * *</span></p>
+        <p>
+          入力数字 :
+          <input type="text" id="input1" maxlength="1" />
+          <input type="text" id="input2" maxlength="1" />
+          <input type="text" id="input3" maxlength="1" />
+          <button id="check-btn">確認</button>
+        </p>
+      </div>
+
+      <table class="result-table">
+        <tr>
+          <th>回数</th>
+          <th>入力数字</th>
+          <th>結果</th>
+        </tr>
+        <tbody id="result-body">
+          <tr>
+            <td>1回</td>
+            <td id="attempt1"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>2回</td>
+            <td id="attempt2"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>3回</td>
+            <td id="attempt3"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>4回</td>
+            <td id="attempt4"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>5回</td>
+            <td id="attempt5"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>6回</td>
+            <td id="attempt6"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>7回</td>
+            <td id="attempt7"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>8回</td>
+            <td id="attempt8"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>9回</td>
+            <td id="attempt9"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>10回</td>
+            <td id="attempt10"></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
