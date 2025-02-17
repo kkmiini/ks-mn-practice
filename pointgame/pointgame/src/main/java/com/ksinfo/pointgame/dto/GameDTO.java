@@ -1,18 +1,18 @@
 package com.ksinfo.pointgame.dto;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class GameDTO {
 	private String memberId;      // member_id
     private int gameCount;        // game_count
     private int point;            // point
-    private LocalDateTime createDate;  // create_date
+    private LocalDate createDate;  // create_date
     private int secretNumber;     // secret_number
     private boolean gameOver;     // game_over
 	
 	public GameDTO() {}
 	
-	public GameDTO(String memberId, int gameCount, int point, LocalDateTime createDate, int secretNumber,
+	public GameDTO(String memberId, int gameCount, int point, LocalDate createDate, int secretNumber,
 			boolean gameOver) {
 		this.memberId = memberId;
 		this.gameCount = gameCount;
@@ -46,11 +46,11 @@ public class GameDTO {
 		this.point = point;
 	}
 
-	public LocalDateTime getCreateDate() {
+	public LocalDate getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(LocalDate createDate) {
 		this.createDate = createDate;
 	}
 

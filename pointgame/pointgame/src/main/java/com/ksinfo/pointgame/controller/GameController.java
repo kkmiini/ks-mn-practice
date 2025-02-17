@@ -23,6 +23,7 @@ public class GameController {
     @GetMapping("/game")
     public String getPoint(@RequestParam String memberId, Model model) {
         GameDTO pointInfo = gameService.getPointInfo(memberId); // DB에서 조회
+        GameDTO hideNum = gameService.setHideNum(memberId); //숨김숫자 db 업데이트
 
         // 조회된 포인트 정보를 모델에 추가하여 화면에 전달
         model.addAttribute("pointInfo", pointInfo);

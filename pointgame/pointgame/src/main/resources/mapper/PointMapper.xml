@@ -4,13 +4,26 @@
 
 <mapper namespace="com.ksinfo.pointgame.dao.PointDAO">
 	
-	<!--  -->	
-	 <select id="getPoint" resultType="com.ksinfo.pointgame.dto.GameDTO">
-	    SELECT game_count, point, create_date, secret_number, game_over
-	    FROM POINTINFO
-	    WHERE member_id=#{memberId} 
-    </select>
+	<resultMap id="GameResultMap" type="com.ksinfo.pointgame.dto.GameDTO">
+	    <result column="member_id" property="memberId"/>
+	    <result column="game_count" property="gameCount"/>
+	    <result column="point" property="point"/>
+	    <result column="create_date" property="createDate" jdbcType="DATE"/>
+	    <result column="secret_number" property="secretNumber"/>
+	    <result column="game_over" property="gameOver"/>
+	</resultMap>
 
+	<select id="getPoint" resultMap="GameResultMap">
+	    SELECT member_id, game_count, point, create_date, secret_number, game_over
+	    FROM pointinfo
+	    WHERE member_id = #{memberId}
+	</select>
+
+	<update id="setHideNum">
+		UPDATE POINTINFO
+		SET secret_number = #{secretNumber}
+		WHERE member_id=#{memberId} 
+	</update>
 
 	
 
