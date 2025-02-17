@@ -26,10 +26,10 @@ public class GameService {
         // 현재 사용자 정보를 DB에서 조회
         GameDTO gameInfo = pointDAO.getPoint(memberId);
 
-        // gameInfo가 `null`이면 기본값 반환 (예외 방지)
+        /* gameInfo가 `null`이면 기본값 반환 (예외 방지)
         if (gameInfo == null) {
             return new GameDTO(memberId, 0, 0, null, 0, false);
-        }
+        } */
 
         // createDate가 null이 아니고, 오늘 날짜와 동일하면 기존 secretNumber 유지
         if (gameInfo.getCreateDate() != null) {

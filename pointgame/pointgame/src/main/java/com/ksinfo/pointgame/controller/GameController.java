@@ -31,5 +31,7 @@ public class GameController {
         
         return "game"; // pointView.jsp 또는 pointView.html로 이동
     }
+    
+    
 
 }

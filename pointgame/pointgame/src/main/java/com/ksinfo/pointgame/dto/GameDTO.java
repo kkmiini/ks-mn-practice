@@ -9,17 +9,33 @@ public class GameDTO {
     private LocalDate createDate;  // create_date
     private int secretNumber;     // secret_number
     private boolean gameOver;     // game_over
+    
+ 
+
+	private int resultNumber; // result_number
+    private String resultContent; // result_content
 	
 	public GameDTO() {}
 	
-	public GameDTO(String memberId, int gameCount, int point, LocalDate createDate, int secretNumber,
-			boolean gameOver) {
+	public GameDTO(
+			String memberId, 
+			int gameCount, 
+			int point, 
+			LocalDate createDate, 
+			int secretNumber,
+			boolean gameOver,
+			
+			int resultNumber,
+			String resultContent) {
 		this.memberId = memberId;
 		this.gameCount = gameCount;
 		this.point = point;
 		this.createDate = createDate;
 		this.secretNumber = secretNumber;
 		this.gameOver = gameOver;
+		
+		this.resultNumber = resultNumber;
+		this.resultContent = resultContent;
 	}
 	
 	public String getMemberId() {
@@ -68,6 +84,22 @@ public class GameDTO {
 
 	public void setGameOver(boolean gameOver) {
 		this.gameOver = gameOver;
+	}
+	
+	 public int getResultNumber() {
+		return resultNumber;
+	}
+
+	public void setResultNumber(int resultNumber) {
+		this.resultNumber = resultNumber;
+	}
+
+	public String getResultContent() {
+		return resultContent;
+	}
+
+	public void setResultContent(String resultContent) {
+		this.resultContent = resultContent;
 	}
 
 
