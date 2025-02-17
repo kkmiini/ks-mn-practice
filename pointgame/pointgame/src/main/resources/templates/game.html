@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>数当てゲーム</title>
-    <link rel="stylesheet" href="game.css" />
-    <link rel="stylesheet" href="popup.css" />
+    <link rel="stylesheet" href="/css/game.css" />
+    <link rel="stylesheet" href="/CSS/popup.css" />
   </head>
   <body>
     <div class="container">
@@ -14,18 +14,20 @@
         <button onclick="showPopup('ゲームが終了しました')" id="close-btn">✖</button>
       </div>
 
-      <div class="points">現在のポイント : <span id="points">10000</span></div>
+      <div class="points">現在のポイント :<span id="points" th:text="${pointInfo.point}"></span></div>
 
+	  <form action="/play" method="get">
       <div class="game-area">
         <p>隠れ数字 : <span class="hidden-number">* * *</span></p>
         <p>
           入力数字 :
-          <input type="text" id="input1" maxlength="1" />
-          <input type="text" id="input2" maxlength="1" />
-          <input type="text" id="input3" maxlength="1" />
-          <button id="check-btn">確認</button>
+          <input type="num1" id="num1" name="num1" maxlength="1" />
+          <input type="num2" id="num2" name="num2" maxlength="1" />
+          <input type="num3" id="num3" name="num3" maxlength="1" />
+          <button type="submit" class="play-button">確認</button>
         </p>
       </div>
+	  </form>
 
       <table class="result-table">
         <tr>
@@ -96,5 +98,5 @@
       </div>
     </div>
   </body>
-  <script src="popup.js"></script>
+  <script src="/JS/popup.js"></script>
 </html>

@@ -1,7 +1,10 @@
 package com.ksinfo.pointgame.controller;
 
+import com.ksinfo.pointgame.dto.GameDTO;
+import com.ksinfo.pointgame.service.GameService;
 import com.ksinfo.pointgame.service.MemberService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -13,6 +16,7 @@ public class MemberController {
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
     }
+    
 
     // 로그인 페이지 렌더링
     @GetMapping("/login")
@@ -21,20 +25,15 @@ public class MemberController {
     }
     // 로그인 처리
     @PostMapping("/login")
-    public ModelAndView login(@RequestParam String memberId, @RequestParam String password) {
-        ModelAndView modelAndView = new ModelAndView();
-        if (memberService.authenticate(memberId, password)) {
-            modelAndView.setViewName("redirect:/game"); // 로그인 성공 -> game.html로 리디렉트
+    public String login(@RequestParam String memberId, @RequestParam String memberPassword, Model model) {
+        boolean isAuthenticated = memberService.authenticate(memberId, memberPassword);
+        
+        if (isAuthenticated) {
+            return "redirect:/game?memberId=" + memberId; // ✅ memberId 전달
         } else {
-            modelAndView.setViewName("login"); // 로그인 실패 -> login.html 반환
-            modelAndView.addObject("error", "아이디 또는 비밀번호가 잘못되었습니다.");
+            model.addAttribute("error", "아이디 또는 비밀번호가 틀렸습니다.");
+            return "login"; // 로그인 화면으로 다시 이동
         }
-        return modelAndView;
     }
 
-    // 게임 페이지 렌더링
-    @GetMapping("/game")
-    public ModelAndView showGamePage() {
-        return new ModelAndView("game"); // Thymeleaf의 game.html 반환
-    }
 }
