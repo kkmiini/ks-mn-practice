@@ -4,11 +4,17 @@
 
 <mapper namespace="com.ksinfo.pointgame.dao.ResultDAO">
 	
-	<select id="getResult" >
-		SELECT result_number, result_content
-		FROM GAMEINFO
-		WHERE member_id=#{memberId} 
-	</select>
+<resultMap id="ResultMap" type="com.ksinfo.pointgame.dto.GameDTO">
+    <result property="resultNumber" column="result_number"/>
+    <result property="resultContent" column="result_content"/>
+    <result property="createDate" column="create_date"/>
+</resultMap>
+
+<select id="getResult" resultMap="ResultMap">
+    SELECT result_number, result_content, create_date
+    FROM gameinfo
+    WHERE member_id=#{memberId}
+</select>
 	
 	
 	

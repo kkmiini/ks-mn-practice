@@ -8,7 +8,7 @@ public class GameDTO {
     private int point;            // point
     private LocalDate createDate;  // create_date
     private int secretNumber;     // secret_number
-    private boolean gameOver;     // game_over
+    private int gameOver;     // game_over
     
  
 
@@ -23,7 +23,7 @@ public class GameDTO {
 			int point, 
 			LocalDate createDate, 
 			int secretNumber,
-			boolean gameOver,
+			int gameOver,
 			
 			int resultNumber,
 			String resultContent) {
@@ -78,11 +78,11 @@ public class GameDTO {
 		this.secretNumber = secretNumber;
 	}
 
-	public boolean isGameOver() {
+	public int isGameOver() {
 		return gameOver;
 	}
 
-	public void setGameOver(boolean gameOver) {
+	public void setGameOver(int gameOver) {
 		this.gameOver = gameOver;
 	}
 	

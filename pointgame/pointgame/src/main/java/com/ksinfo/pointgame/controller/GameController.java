@@ -22,12 +22,16 @@ public class GameController {
 	  // 포인트 정보 조회 (화면에 데이터 전달)
     @GetMapping("/game")
     public String getPoint(@RequestParam String memberId, Model model) {
+    	
         GameDTO pointInfo = gameService.getPointInfo(memberId); // DB에서 조회
-        GameDTO hideNum = gameService.setHideNum(memberId); //숨김숫자 db 업데이트
+        
+        GameDTO resultInfo = gameService.getResult(memberId); // 게임이력 DB에서 조회 
+
 
         // 조회된 포인트 정보를 모델에 추가하여 화면에 전달
         model.addAttribute("pointInfo", pointInfo);
         model.addAttribute("memberId", memberId);
+        model.addAttribute("resultInfo", resultInfo);
         
         return "game"; // pointView.jsp 또는 pointView.html로 이동
     }

@@ -20,9 +20,23 @@
 	</select>
 
 	<update id="setHideNum">
-		UPDATE POINTINFO
+		UPDATE pointinfo
 		SET secret_number = #{secretNumber}
 		WHERE member_id=#{memberId} 
+	</update>
+	
+
+	
+	<update id="setGameNumAndGameOver">
+		UPDATE pointinfo
+		SET game_count = 0, game_over = 0
+		WHERE member_id=#{memberId} 
+	</update>
+
+	<update id="updateCreateDate">
+	    UPDATE pointinfo 
+	    SET create_date = CURRENT_DATE
+	    WHERE member_id = #{memberId}
 	</update>
 
 	

@@ -14,4 +14,10 @@ public interface PointDAO {
     
     void setHideNum(@Param("memberId") String memberId, @Param("secretNumber") int secretNumber);
 
+	void setGameNumAndGameOver(@Param("memberId")String memberId);
+
+    void updateCreateDate(@Param("memberId") String memberId);
+    
+    
+    
 }
