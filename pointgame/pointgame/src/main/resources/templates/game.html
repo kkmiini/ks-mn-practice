@@ -11,7 +11,7 @@
     <div class="container">
       <div class="header">
         <span>数当てゲーム</span>
-        <button onclick="showPopup('ゲームが終了しました')" id="close-btn">✖</button>
+        <a href="/login">✖</a>
       </div>
 
       <div class="points">現在のポイント :<span id="points" th:text="${pointInfo.point}"></span></div>
@@ -41,7 +41,7 @@
 			<tr th:each="result, iterStat : ${resultInfos}">
 			    <td th:text="${iterStat.count} + '回'"></td>
 			    <td th:text="${result.resultNumber}"></td>
-			    <td th:text="${result.resultContent}"></td>
+				<td class="result-content" th:text="${result.resultContent}"></td>
 			</tr>
         </tbody>
       </table>
