@@ -2,6 +2,7 @@ package com.ksinfo.pointgame.service;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -54,31 +55,25 @@ public class GameService {
         return gameInfo;
     }
 
-	public GameDTO getResult(String memberId) {
-		GameDTO resultInfo = resultDAO.getResult(memberId);
-		
-		 // 2️⃣ resultInfo가 null이면 새로운 객체 생성 (예외 방지)
-	    if (resultInfo == null) {
-	    	return new GameDTO(memberId, 0, 0, null, 0, 0, 0, null);
-	    }
-		
-		 LocalDate dbDate = resultInfo.getCreateDate();
-	     LocalDate today = LocalDate.now();
-	     
-	     // create_date가 당일이면 DB 조회 
-	        if (dbDate == null || dbDate.equals(today)) {
-	        	 // 새 결과 데이터 가져오기
-	            GameDTO newResultInfo = resultDAO.getResult(memberId);
+    public List<GameDTO> getResults(String memberId) {
+        List<GameDTO> resultInfos = resultDAO.getResult(memberId); // 여러 개의 결과 조회
 
-	            if (newResultInfo != null) {
-	                resultInfo.setResultNumber(newResultInfo.getResultNumber());
-	                resultInfo.setResultContent(newResultInfo.getResultContent());
-	            }
-		
-	        }
-	       
-		return resultInfo;
-	}
+        if (resultInfos == null || resultInfos.isEmpty()) {
+            // 결과가 없으면 빈 리스트 반환
+            return List.of(new GameDTO(memberId, 0, 0, null, 0, 0, 0, null));
+        }
+
+        
+        for (GameDTO resultInfo : resultInfos) {
+    
+            
+            resultInfo.setResultNumber(resultInfo.getResultNumber());
+            resultInfo.setResultContent(resultInfo.getResultContent());
+        }
+
+        return resultInfos;
+    }
+
 
 
 }

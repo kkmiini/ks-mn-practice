@@ -3,19 +3,20 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ksinfo.pointgame.dao.ResultDAO">
-	
-<resultMap id="ResultMap" type="com.ksinfo.pointgame.dto.GameDTO">
-    <result property="resultNumber" column="result_number"/>
-    <result property="resultContent" column="result_content"/>
-    <result property="createDate" column="create_date"/>
-</resultMap>
 
-<select id="getResult" resultMap="ResultMap">
-    SELECT result_number, result_content, create_date
-    FROM gameinfo
-    WHERE member_id=#{memberId}
-</select>
-	
-	
-	
+    <!-- ResultMap 정의 -->
+    <resultMap id="ResultMap" type="com.ksinfo.pointgame.dto.GameDTO">
+        <result property="resultNumber" column="result_number"/>
+        <result property="resultContent" column="result_content"/>
+        <result property="createDate" column="create_date" />
+    </resultMap>
+
+    <!-- 여러 개의 결과 조회 -->
+	<select id="getResult" resultMap="ResultMap">
+	    SELECT result_number, result_content
+	    FROM gameinfo
+	    WHERE member_id = #{memberId} 
+	     AND DATE(create_date) = CURRENT_DATE
+	</select>
+
 </mapper>
