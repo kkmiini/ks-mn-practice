@@ -18,5 +18,10 @@
 	    WHERE member_id = #{memberId} 
 	     AND DATE(create_date) = CURRENT_DATE
 	</select>
+	
+	<insert id="saveResult" parameterType="map">
+	    INSERT INTO gameinfo (member_id, input_count, result_number, result_content)
+	    VALUES (#{memberId}, #{inputCount}, #{resultNumber}, #{resultContent});
+	</insert>
 
 </mapper>

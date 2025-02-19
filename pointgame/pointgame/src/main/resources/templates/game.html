@@ -17,8 +17,7 @@
       <div class="points">現在のポイント :<span id="points" th:text="${pointInfo.point}"></span></div>
 
 	  <form action="/play" method="get">
-		  <!-- 🔹 memberId를 숨겨진 입력 필드로 추가 -->
-		  <input type="hidden" name="memberId" th:value="${memberId}" />
+		<input type="hidden" name="memberId" th:value="${pointInfo.memberId}" />
 		  <div class="game-area">
 		    <p>隠れ数字 : <span class="hidden-number">* * *</span></p>
 		    <p>
@@ -38,10 +37,11 @@
           <td id="result">結果</td>
         </tr>
         <tbody id="result-body">
+			<!-- resultInfos 값이 있을 경우 -->
 			<tr th:each="result, iterStat : ${resultInfos}">
-			  <td th:text="${iterStat.count} + '回'"></td>
-			  <td th:text="${result.resultNumber}"></td>
-			  <td th:text="${result.resultContent}"></td>
+			    <td th:text="${iterStat.count} + '回'"></td>
+			    <td th:text="${result.resultNumber}"></td>
+			    <td th:text="${result.resultContent}"></td>
 			</tr>
         </tbody>
       </table>

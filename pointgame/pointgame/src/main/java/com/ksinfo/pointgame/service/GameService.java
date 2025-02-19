@@ -2,7 +2,9 @@ package com.ksinfo.pointgame.service;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -72,6 +74,18 @@ public class GameService {
         }
 
         return resultInfos;
+    }
+
+    public void saveInfo(String memberId, int gameCount, int resultNumber, String resultContent) {
+        // 파라미터를 Map으로 만들어 DAO에 전달
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("memberId", memberId);
+        paramMap.put("inputCount", gameCount);
+        paramMap.put("resultNumber", resultNumber);
+        paramMap.put("resultContent", resultContent);
+
+        // DAO 호출하여 데이터 저장
+        resultDAO.saveResult(paramMap);
     }
 
 

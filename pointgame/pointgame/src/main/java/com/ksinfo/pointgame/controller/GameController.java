@@ -22,6 +22,10 @@ public class GameController {
 		this.gameService = gameService;
 	}
 
+	
+
+	
+	
 	  // 포인트 정보 조회 (화면에 데이터 전달)
     @GetMapping("/game")
     public String getPoint(@RequestParam String memberId, Model model) {
@@ -38,23 +42,33 @@ public class GameController {
         
         return "game"; // pointView.jsp 또는 pointView.html로 이동
         
-        
-        
-        
+   
     }
     
     @GetMapping("/play")
     public String saveResult(@RequestParam String memberId, @RequestParam int num1, int num2, int num3, Model model) {
     	
-    	GameDTO pointInfo = gameService.getPointInfo(memberId); // DB에서 조회
-    	
-    	int secret_num = pointInfo.getSecretNumber(); 
-    	int game_count = pointInfo.getGameCount();
-    	
-    	  // Util 클래스로 값 전달
-        GameDTO resultValue = PlayGameUtil.processInput(num1, num2, num3, secret_num, game_count);
+    	GameDTO pointInfo = gameService.getPointInfo(memberId);
 
-        model.addAttribute("resultValue", resultValue);
+    	
+    	int secret_num = pointInfo.getSecretNumber();
+    	int game_count = (pointInfo.getGameCount() == 0) ? 1 : pointInfo.getGameCount() + 1;
+    	
+	
+    	  // Util 클래스로 값 전달
+    	GameDTO resultValue = PlayGameUtil.processInput(num1, num2, num3, secret_num, game_count);
+    	
+
+    	gameService.saveInfo(
+    			memberId,
+    			resultValue.getGameCount(), 
+    			resultValue.getResultNumber(), 
+    			resultValue.getResultContent());
+  
+    	List<GameDTO> resultInfos = gameService.getResults(memberId); // 게임이력 DB에서 조회 
+        model.addAttribute("pointInfo", pointInfo);
+        model.addAttribute("resultInfos", resultInfos);
+   
     	
     	return "game"; 
     }
