@@ -37,16 +37,18 @@ public class GameController {
     	
     	GameDTO pointInfo = gameService.getPointInfo(memberId); // DB에서 조회
         
-        List<GameDTO> resultInfos = gameService.getResults(memberId); // 게임이력 DB에서 조회 
-
-        // 조회된 포인트 정보를 모델에 추가하여 화면에 전달
+        List<GameDTO> resultInfos = gameService.getResults(memberId); // 게임이력 DB에서 조회 \
+        
+     // 조회된 포인트 정보를 모델에 추가하여 화면에 전달
         model.addAttribute("pointInfo", pointInfo);
         model.addAttribute("memberId", memberId);
         model.addAttribute("resultInfos", resultInfos);
-        
+        model.addAttribute("gameOver", pointInfo.getGameOver());
+
+     
         return "game"; // pointView.jsp 또는 pointView.html로 이동
         
-   
+        
     }
     
     @GetMapping("/play")
