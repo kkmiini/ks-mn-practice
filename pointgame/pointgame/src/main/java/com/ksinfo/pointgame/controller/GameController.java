@@ -38,11 +38,6 @@ public class GameController {
     	GameDTO pointInfo = gameService.getPointInfo(memberId); // DB에서 조회
         
         List<GameDTO> resultInfos = gameService.getResults(memberId); // 게임이력 DB에서 조회 
-        
-        if(pointInfo.getGameOver() == 1) {
-        	 model.addAttribute("gameOverMessage", "今日のゲームは終了しました！");
-        }
-
 
         // 조회된 포인트 정보를 모델에 추가하여 화면에 전달
         model.addAttribute("pointInfo", pointInfo);

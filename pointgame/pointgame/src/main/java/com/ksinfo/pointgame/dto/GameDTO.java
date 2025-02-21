@@ -3,106 +3,113 @@ package com.ksinfo.pointgame.dto;
 import java.time.LocalDate;
 
 public class GameDTO {
-	private String memberId;      // member_id
-    private int gameCount;        // game_count
-    private int point;            // point
-    private LocalDate createDate;  // create_date
-    private int secretNumber;     // secret_number
-    private int gameOver;     // game_over
-    
- 
+    private String memberId;      
+    private int gameCount;        
+    private int point;            
+    private LocalDate createDate;  // 🛑 LocalDate import가 없으면 빨간 줄 발생!
+    private int secretNumber;     
+    private int gameOver;     
+    private int resultNumber; 
+    private String resultContent; 
 
-	private int resultNumber; // result_number
-    private String resultContent; // result_content
-	
-	public GameDTO() {}
-	
-	public GameDTO(
-			String memberId, 
-			int gameCount, 
-			int point, 
-			LocalDate createDate, 
-			int secretNumber,
-			int gameOver,
-			
-			int resultNumber,
-			String resultContent) {
-		this.memberId = memberId;
-		this.gameCount = gameCount;
-		this.point = point;
-		this.createDate = createDate;
-		this.secretNumber = secretNumber;
-		this.gameOver = gameOver;
-		
-		this.resultNumber = resultNumber;
-		this.resultContent = resultContent;
-	}
-	
-	public String getMemberId() {
-		return memberId;
-	}
+    public GameDTO() {
+        this.gameOver = 0; // 기본값 설정
+    }
 
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
-	}
+    public GameDTO(
+            String memberId, 
+            int gameCount, 
+            int point, 
+            LocalDate createDate, 
+            int secretNumber,
+            int gameOver,
+            int resultNumber,
+            String resultContent) {
+        this.memberId = memberId;
+        this.gameCount = gameCount;
+        this.point = point;
+        this.createDate = createDate;
+        this.secretNumber = secretNumber;
+        this.gameOver = gameOver;
+        this.resultNumber = resultNumber;
+        this.resultContent = resultContent;
+    }
 
-	public int getGameCount() {
-		return gameCount;
-	}
+    public String getMemberId() {
+        return memberId;
+    }
 
-	public void setGameCount(int gameCount) {
-		this.gameCount = gameCount;
-	}
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
 
-	public int getPoint() {
-		return point;
-	}
+    public int getGameCount() {
+        return gameCount;
+    }
 
-	public void setPoint(int point) {
-		this.point = point;
-	}
+    public void setGameCount(int gameCount) {
+        this.gameCount = gameCount;
+    }
 
-	public LocalDate getCreateDate() {
-		return createDate;
-	}
+    public int getPoint() {
+        return point;
+    }
 
-	public void setCreateDate(LocalDate createDate) {
-		this.createDate = createDate;
-	}
+    public void setPoint(int point) {
+        this.point = point;
+    }
 
-	public int getSecretNumber() {
-		return secretNumber;
-	}
+    public LocalDate getCreateDate() {
+        return createDate;
+    }
 
-	public void setSecretNumber(int secretNumber) {
-		this.secretNumber = secretNumber;
-	}
+    public void setCreateDate(LocalDate createDate) {
+        this.createDate = createDate;
+    }
 
-	public int getGameOver() {
-		return gameOver;
-	}
+    public int getSecretNumber() {
+        return secretNumber;
+    }
 
-	public void setGameOver(int gameOver) {
-		this.gameOver = gameOver;
-	}
-	
-	 public int getResultNumber() {
-		return resultNumber;
-	}
+    public void setSecretNumber(int secretNumber) {
+        this.secretNumber = secretNumber;
+    }
 
-	public void setResultNumber(int resultNumber) {
-		this.resultNumber = resultNumber;
-	}
+    public int getGameOver() {
+        return gameOver;
+    }
 
-	public String getResultContent() {
-		return resultContent;
-	}
+    public void setGameOver(int gameOver) {
+        this.gameOver = gameOver;
+    }
 
-	public void setResultContent(String resultContent) {
-		this.resultContent = resultContent;
-	}
+    public int getResultNumber() {
+        return resultNumber;
+    }
 
+    public void setResultNumber(int resultNumber) {
+        this.resultNumber = resultNumber;
+    }
 
-	
+    public String getResultContent() {
+        return resultContent;
+    }
 
+    public void setResultContent(String resultContent) {
+        this.resultContent = resultContent;
+    }
+
+    @Override
+    public String toString() {
+        return "GameDTO{" +
+                "memberId='" + memberId + '\'' +
+                ", gameCount=" + gameCount +
+                ", point=" + point +
+                ", createDate=" + createDate +
+                ", secretNumber=" + secretNumber +
+                ", gameOver=" + gameOver +
+                ", resultNumber=" + resultNumber +
+                ", resultContent='" + resultContent + '\'' +
+                '}';
+    }
 }
