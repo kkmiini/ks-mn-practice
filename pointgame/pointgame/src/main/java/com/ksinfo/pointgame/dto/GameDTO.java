@@ -6,7 +6,7 @@ public class GameDTO {
     private String memberId;      
     private int gameCount;        
     private int point;            
-    private LocalDate createDate;  // 🛑 LocalDate import가 없으면 빨간 줄 발생!
+    private LocalDate createDate;  // LocalDate import가 없으면 빨간 줄 발생!
     private int secretNumber;     
     private int gameOver;     
     private int resultNumber; 
