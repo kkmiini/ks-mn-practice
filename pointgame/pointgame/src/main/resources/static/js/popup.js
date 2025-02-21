@@ -1,6 +1,28 @@
 // document.addEventListener("DOMContentLoaded", function() {
 	
-window.onload = function() {
+	
+
+	
+	
+	
+	
+document.addEventListener("DOMContentLoaded", function() {
+		   let gameOverMessageElement = document.getElementById("gameOverMessage"); 
+    let gameOverMessage = gameOverMessageElement ? gameOverMessageElement.innerText.trim() : null;
+
+    if (gameOverMessage && gameOverMessage !== "null") {
+        console.log("🛑 게임 종료 메시지 감지:", gameOverMessage);
+        popupMessage.innerText = gameOverMessage;
+        modal.style.display = "flex";
+
+        // 입력창과 버튼 비활성화
+        disableGame();
+    }
+	
+	
+	
+	
+	
 	       	let results = document.querySelectorAll(".result-content");
             let getpoint = 0;
 
@@ -53,17 +75,46 @@ window.onload = function() {
 	    	
             }
             
-             function updatePoints() {
-        let newPoints = currentPoints + getpoint;
-        pointsDisplay.innerText = newPoints; // 화면 업데이트
+function updatePoints() {
+    let newPoints = currentPoints + getpoint;
+    pointsDisplay.innerText = newPoints; // 화면 업데이트
 
+    let memberId = document.getElementById("memberId").value; // ID 가져오기
 
-    }
+    fetch('/updatePoint', {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            memberId: memberId,
+            newPoints: newPoints
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("서버 오류: " + response.status);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log("서버 응답:", data);
+        alert("ポイントが正常に更新されました！");
+    })
+    .catch(error => {
+        console.error("포인트 업데이트 실패:", error);
+    });
+}
   
+
 	        
 		         
 
 	    	
 	    	
             
-        }; 
+        }); 
+        
+        
+        
+        

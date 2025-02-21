@@ -47,7 +47,7 @@
 
 	<update id="savePointInfo">
 		UPDATE pointinfo 
-		SET game_count = 0, point = #{newPoints}, game_over = 0
+		SET game_count = 0, point = #{newPoints}, game_over = 1
 		WHERE member_id = #{memberId}
 		
 	</update>

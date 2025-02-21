@@ -8,16 +8,20 @@
     <link rel="stylesheet" href="/CSS/popup.css" />
   </head>
   <body>
+	<!-- 게임 종료 메시지를 숨긴 상태로 HTML에 포함 -->
+	<div id="gameOverMessage" th:text="${gameOverMessage}" style="display: none;"></div>
+
     <div class="container">
-      <div class="header">
+		<div class="header">
         <span>数当てゲーム</span>
         <a href="/login">✖</a>
-      </div>
+        </div>
 
       <div class="points">現在のポイント :<span id="points" th:text="${pointInfo.point}"></span></div>
-
+	
+	  
 	  <form action="/play" method="get">
-		<input type="hidden" id="memeberId" name="memberId" th:value="${pointInfo.memberId}" />
+		<input type="hidden" id="memberId" name="memberId" th:value="${pointInfo.memberId}" />
 		  <div class="game-area">
 		    <p>隠れ数字 : <span class="hidden-number">* * *</span></p>
 		    <p>

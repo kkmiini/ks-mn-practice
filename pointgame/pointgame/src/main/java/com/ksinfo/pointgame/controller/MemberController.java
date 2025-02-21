@@ -29,7 +29,7 @@ public class MemberController {
         boolean isAuthenticated = memberService.authenticate(memberId, memberPassword);
         
         if (isAuthenticated) {
-            return "redirect:/game?memberId=" + memberId; // ✅ memberId 전달
+            return "redirect:/game?memberId=" + memberId; //  memberId 전달
         } else {
             model.addAttribute("error", "아이디 또는 비밀번호가 틀렸습니다.");
             return "login"; // 로그인 화면으로 다시 이동

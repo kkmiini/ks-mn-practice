@@ -78,7 +78,7 @@ public class GameDTO {
 		this.secretNumber = secretNumber;
 	}
 
-	public int isGameOver() {
+	public int getGameOver() {
 		return gameOver;
 	}
 
