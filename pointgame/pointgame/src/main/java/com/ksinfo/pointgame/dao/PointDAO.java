@@ -17,6 +17,10 @@ public interface PointDAO {
 	void setGameNumAndGameOver(@Param("memberId")String memberId);
 
     void updateCreateDate(@Param("memberId") String memberId);
+
+	void saveGameCount(String memberId);
+
+	void savePointInfo(String memberId, int newPoints);
     
     
     

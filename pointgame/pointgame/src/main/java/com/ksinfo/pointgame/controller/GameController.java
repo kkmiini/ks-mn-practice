@@ -64,6 +64,9 @@ public class GameController {
     			resultValue.getGameCount(), 
     			resultValue.getResultNumber(), 
     			resultValue.getResultContent());
+    	
+    	gameService.saveGameCount(
+    			memberId);
   
     	List<GameDTO> resultInfos = gameService.getResults(memberId); // 게임이력 DB에서 조회 
         model.addAttribute("pointInfo", pointInfo);
@@ -72,6 +75,12 @@ public class GameController {
     	
     	return "game"; 
     }
+    
+    @GetMapping("/updatePoint")
+    public void updatePoint(@RequestParam String memberId, @RequestParam int newPoints) {
+    	gameService.savePointInfo(memberId, newPoints);
+    }
+  
     
 
 }

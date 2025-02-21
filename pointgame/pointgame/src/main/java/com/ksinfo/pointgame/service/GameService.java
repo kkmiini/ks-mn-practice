@@ -88,6 +88,18 @@ public class GameService {
         resultDAO.saveResult(paramMap);
     }
 
+	public void saveGameCount(String memberId) {
+		pointDAO.saveGameCount(memberId);
+		
+	}
+
+	public void savePointInfo(String memberId, int newPoints) {
+		pointDAO.savePointInfo(memberId, newPoints);
+		
+	}
+
+
+
 
 
 }

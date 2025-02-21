@@ -9,7 +9,7 @@
 	    <result column="game_count" property="gameCount"/>
 	    <result column="point" property="point"/>
 	    <result column="create_date" property="createDate" jdbcType="DATE"/>
-	    <result column="secret_number" property="secretNumber"/>
+	    <result column="secret_number" property="secretNumber" jdbcType="INTEGER"/>
 	    <result column="game_over" property="gameOver"/>
 	</resultMap>
 
@@ -38,8 +38,19 @@
 	    SET create_date = CURRENT_DATE
 	    WHERE member_id = #{memberId}
 	</update>
-
 	
+	<update id="saveGameCount">
+		UPDATE pointinfo
+		SET game_count = game_count + 1 
+		WHERE member_id = #{memberId}
+	</update>
+
+	<update id="savePointInfo">
+		UPDATE pointinfo 
+		SET game_count = 0, point = #{newPoints}, game_over = 0
+		WHERE member_id = #{memberId}
+		
+	</update>
 
 	
 	

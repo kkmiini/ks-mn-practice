@@ -17,7 +17,7 @@
       <div class="points">現在のポイント :<span id="points" th:text="${pointInfo.point}"></span></div>
 
 	  <form action="/play" method="get">
-		<input type="hidden" name="memberId" th:value="${pointInfo.memberId}" />
+		<input type="hidden" id="memeberId" name="memberId" th:value="${pointInfo.memberId}" />
 		  <div class="game-area">
 		    <p>隠れ数字 : <span class="hidden-number">* * *</span></p>
 		    <p>
@@ -47,13 +47,12 @@
       </table>
     </div>
     <!-- 팝업화면 -->
-    <div id="popup" class="popup">
-      <div class="popup-content">
-        <h2>ゲーム結果</h2>
-        <p id="popup-message">結果を表示します</p>
-        <button onclick="closePopup()">閉じる</button>
-      </div>
-    </div>
+	<div id="popup-modal" class="modal">
+	       <div class="modal-content">
+	           <p id="popup-message"></p>
+	           <button id="popup-close">OK</button>
+	       </div>
+	   </div>
   </body>
-  <script src="/JS/popup.js"></script>
+  <script src="/jS/popup.js"></script>
 </html>
