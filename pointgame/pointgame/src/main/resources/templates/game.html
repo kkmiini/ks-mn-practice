@@ -20,9 +20,9 @@
 				<p>隠れ数字 : <span class="hidden-number">* * *</span></p>
 				<p>
 					入力数字 :
-					<input type="num1" id="num1" name="num1" pattern="[0-9]" maxlength="1" />
-					<input type="num2" id="num2" name="num2" pattern="[0-9]" maxlength="1" />
-					<input type="num3" id="num3" name="num3" pattern="[0-9]" maxlength="1" />
+					<input type="num1" id="num1" name="num1" pattern="[0-9]" maxlength="1" required/>
+					<input type="num2" id="num2" name="num2" pattern="[0-9]" maxlength="1" required/>
+					<input type="num3" id="num3" name="num3" pattern="[0-9]" maxlength="1" required/>
 					<button type="submit" class="play-button">確認</button>
 				</p>
 			</div>
@@ -33,7 +33,7 @@
 				<td id="input_num">入力数字</td>
 				<td id="result">結果</td>
 			</tr>
-			<tbody id="result-body" th:if="${resultInfos.size() > 0}">
+			<tbody id="result-body" >
 				<!-- resultInfos 값이 있을 경우 -->
 				<tr th:each="result, iterStat : ${resultInfos}">
 					<td th:text="${iterStat.count} + '回'"></td>
