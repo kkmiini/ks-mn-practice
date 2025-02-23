@@ -99,17 +99,4 @@ public class GameDTO {
         this.resultContent = resultContent;
     }
 
-    @Override
-    public String toString() {
-        return "GameDTO{" +
-                "memberId='" + memberId + '\'' +
-                ", gameCount=" + gameCount +
-                ", point=" + point +
-                ", createDate=" + createDate +
-                ", secretNumber=" + secretNumber +
-                ", gameOver=" + gameOver +
-                ", resultNumber=" + resultNumber +
-                ", resultContent='" + resultContent + '\'' +
-                '}';
-    }
 }
