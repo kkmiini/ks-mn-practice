@@ -6,5 +6,5 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface MemberDAO {
-    int chkMember(@Param("memberId") String memberId, @Param("memberPassword") String memberPassword);
+	int chkMember(@Param("memberId") String memberId, @Param("memberPassword") String memberPassword);
 }

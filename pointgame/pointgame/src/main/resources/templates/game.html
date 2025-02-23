@@ -1,65 +1,58 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>数当てゲーム</title>
-    <link rel="stylesheet" href="/css/game.css" />
-    <link rel="stylesheet" href="/CSS/popup.css" />
-  </head>
-  <body>
-    <div class="container">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>数当てゲーム</title>
+	<link rel="stylesheet" href="/css/game.css" />
+	<link rel="stylesheet" href="/CSS/popup.css" />
+</head>
+<body>
+	<div class="container">
 		<div class="header">
-        <span>数当てゲーム</span>
-        <a href="/login">✖</a>
-        </div>
-
-      <div class="points">現在のポイント :<span id="points" th:text="${pointInfo.point}"></span></div>
-	
-	  
-	  <form action="/play" method="get">
-		<input type="hidden" id="memberId" name="memberId" th:value="${pointInfo.memberId}" />
-		  <div class="game-area">
-		    <p>隠れ数字 : <span class="hidden-number">* * *</span></p>
-		    <p>
-		      入力数字 :
-		      <input type="num1" id="num1" name="num1" maxlength="1" />
-		      <input type="num2" id="num2" name="num2" maxlength="1" />
-		      <input type="num3" id="num3" name="num3" maxlength="1" />
-		      <button type="submit" class="play-button">確認</button>
-		    </p>
-		  </div>
+			<span>数当てゲーム</span>
+			<a href="/login">✖</a>
+		</div>
+		<div class="points">現在のポイント :<span id="points" th:text="${pointInfo.point}"></span></div>
+		<form id="play" action="/play" method="get">
+			<input type="hidden" id="memberId" name="memberId" th:value="${pointInfo.memberId}" />
+			<div class="game-area">
+				<p>隠れ数字 : <span class="hidden-number">* * *</span></p>
+				<p>
+					入力数字 :
+					<input type="num1" id="num1" name="num1" pattern="[0-9]" maxlength="1" />
+					<input type="num2" id="num2" name="num2" pattern="[0-9]" maxlength="1" />
+					<input type="num3" id="num3" name="num3" pattern="[0-9]" maxlength="1" />
+					<button type="submit" class="play-button">確認</button>
+				</p>
+			</div>
 		</form>
-
-      <table class="result-table">
-        <tr>
-          <td>回数</td>
-          <td id="input_num">入力数字</td>
-          <td id="result">結果</td>
-        </tr>
-        <tbody id="result-body">
-			<!-- resultInfos 값이 있을 경우 -->
-			<tr th:each="result, iterStat : ${resultInfos}">
-			    <td th:text="${iterStat.count} + '回'"></td>
-			    <td th:text="${result.resultNumber}"></td>
-				<td class="result-content" th:text="${result.resultContent}"></td>
+		<table class="result-table">
+			<tr>
+				<td>回数</td>
+				<td id="input_num">入力数字</td>
+				<td id="result">結果</td>
 			</tr>
-        </tbody>
-      </table>
-    </div>
-    <!-- 팝업화면 -->
+			<tbody id="result-body">
+				<!-- resultInfos 값이 있을 경우 -->
+				<tr th:each="result, iterStat : ${resultInfos}">
+					<td th:text="${iterStat.count} + '回'"></td>
+					<td th:text="${result.resultNumber}"></td>
+					<td class="result-content" th:text="${result.resultContent}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- 팝업화면 -->
 	<div id="popup-modal" class="modal">
-	       <div class="modal-content">
-	           <p id="popup-message"></p>
-	           <button id="popup-close">OK</button>
-	       </div>
-	   </div>
-
-
-  <!-- gameOver 값을 data-attribute로 전달 -->
-     <div id="game-data" th:data-gameOver="${gameOver}"></div>
-  
-     <script src="/js/popup.js"></script>
-
-	 </body>
+		<div class="modal-content">
+			<p id="popup-message"></p>
+			<button id="popup-close">OK</button>
+		</div>
+	</div>
+	<!-- gameOver 값을 data-attribute로 전달 -->
+	<div id="game-data" th:data-gameOver="${gameOver}"></div>
+	<script src="/js/popup.js"></script>
+	<script src="/js/numchk.js"></script>
+</body>
 </html>

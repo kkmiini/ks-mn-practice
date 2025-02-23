@@ -55,17 +55,15 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error("서버 오류: " + response.status);
+                throw new Error("サーバーエラー :" + response.status);
             }
             return response.json();
         })
         .then(data => {
-            console.log("서버 응답:", data);
-            alert("ポイントが正常に更新されました！");
             currentPoints = newPoints; // 현재 포인트 갱신
         })
         .catch(error => {
-            console.error("포인트 업데이트 실패:", error);
+            console.error("ポイントアップデート失敗 :", error);
         });
     }
 

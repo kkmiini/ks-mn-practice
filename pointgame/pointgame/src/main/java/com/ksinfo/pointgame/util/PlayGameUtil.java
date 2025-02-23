@@ -23,7 +23,7 @@ public class PlayGameUtil {
         int s = 0;  // 스트라이크 개수
         int b = 0;  // 볼 개수
         String result_content;
-        int result_number = Integer.parseInt("" + num1 + num2 + num3);
+        String result_number = "" + num1 + num2 + num3;
 
         // 스트라이크 & 볼 판별 로직
         for (int i = 0; i < 3; i++) {

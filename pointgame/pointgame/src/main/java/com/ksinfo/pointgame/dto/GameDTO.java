@@ -6,14 +6,14 @@ public class GameDTO {
     private String memberId;      
     private int gameCount;        
     private int point;            
-    private LocalDate createDate;  // LocalDate import가 없으면 빨간 줄 발생!
+    private LocalDate createDate;  
     private int secretNumber;     
     private int gameOver;     
-    private int resultNumber; 
+    private String resultNumber; 
     private String resultContent; 
 
     public GameDTO() {
-        this.gameOver = 0; // 기본값 설정
+        this.gameOver = 0; 
     }
 
     public GameDTO(
@@ -23,7 +23,7 @@ public class GameDTO {
             LocalDate createDate, 
             int secretNumber,
             int gameOver,
-            int resultNumber,
+            String resultNumber,
             String resultContent) {
         this.memberId = memberId;
         this.gameCount = gameCount;
@@ -83,11 +83,11 @@ public class GameDTO {
         this.gameOver = gameOver;
     }
 
-    public int getResultNumber() {
+    public String getResultNumber() {
         return resultNumber;
     }
 
-    public void setResultNumber(int resultNumber) {
+    public void setResultNumber(String resultNumber) {
         this.resultNumber = resultNumber;
     }
 
