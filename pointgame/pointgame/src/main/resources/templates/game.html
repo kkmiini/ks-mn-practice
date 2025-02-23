@@ -33,7 +33,7 @@
 				<td id="input_num">入力数字</td>
 				<td id="result">結果</td>
 			</tr>
-			<tbody id="result-body">
+			<tbody id="result-body" th:if="${resultInfos.size() > 0}">
 				<!-- resultInfos 값이 있을 경우 -->
 				<tr th:each="result, iterStat : ${resultInfos}">
 					<td th:text="${iterStat.count} + '回'"></td>

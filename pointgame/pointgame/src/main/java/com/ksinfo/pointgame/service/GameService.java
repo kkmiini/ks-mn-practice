@@ -61,7 +61,8 @@ public class GameService {
 
 		if (resultInfos == null || resultInfos.isEmpty()) {
 			// 결과가 없으면 빈 리스트 반환
-			return List.of(new GameDTO(memberId, 0, 0, null, 0, 0, null, null));
+		//	return List.of(new GameDTO(memberId, 0, 0, null, 0, 0, null, null));
+			return List.of();
 		}
 
 		for (GameDTO resultInfo : resultInfos) {
