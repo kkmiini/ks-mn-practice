@@ -11,7 +11,7 @@ public class MemberService {
         this.memberDAO = memberDAO;
     }
 
-    public boolean authenticate(String memberId, String password) {
+    public boolean login(String memberId, String password) {
         int count = memberDAO.chkMember(memberId, password);
         return count > 0; // 존재하면 true, 없으면 false
     }

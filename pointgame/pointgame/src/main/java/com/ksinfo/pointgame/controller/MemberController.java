@@ -26,7 +26,7 @@ public class MemberController {
 	// 로그인 처리
 	@PostMapping("/login")
 	public String login(@RequestParam String memberId, @RequestParam String memberPassword, Model model) {
-		boolean isAuthenticated = memberService.authenticate(memberId, memberPassword);
+		boolean isAuthenticated = memberService.login(memberId, memberPassword);
 
 		if (isAuthenticated) {
 			return "redirect:/game?memberId=" + memberId; // memberId 전달
