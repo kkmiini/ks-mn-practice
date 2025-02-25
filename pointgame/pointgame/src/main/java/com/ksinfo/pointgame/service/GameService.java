@@ -5,8 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.ksinfo.pointgame.controller.MemberController;
 import com.ksinfo.pointgame.dao.PointDAO;
 import com.ksinfo.pointgame.dao.ResultDAO;
 import com.ksinfo.pointgame.dto.GameDTO;
@@ -22,39 +26,48 @@ public class GameService {
 		this.pointDAO = pointDAO;
 		this.resultDAO = resultDAO;
 	}
+	
+	private static final Logger logger = LoggerFactory.getLogger(GameService.class);
 
 	public GameDTO getPointInfo(String memberId) {
-		// 현재 포인트 정보 가져오기
-		GameDTO gameInfo = pointDAO.getPoint(memberId);
+	    try {
+	        // 현재 포인트 정보 가져오기
+	        GameDTO gameInfo = pointDAO.getPoint(memberId);
+	        if (gameInfo == null) {
+	            // SQL에 맞는 데이터가 없는 경우 로그에 기록
+	        	logger.error("ポイント情報テーブルに会員IDが登録されていません");
+	            return new GameDTO(memberId, 0, 0, null, 0, 0, null, null);
+	        }
 
-		// gameInfo가 null이면 기본 값 반환 (예외 방지)
-		if (gameInfo == null) {
-			return new GameDTO(memberId, 0, 0, null, 0, 0, null, null);
-		}
+	        // 현재 날짜 가져오기
+	        LocalDate dbDate = gameInfo.getCreateDate();
+	        LocalDate today = LocalDate.now();
 
-		// 현재 날짜 가져오기
-		LocalDate dbDate = gameInfo.getCreateDate();
-		LocalDate today = LocalDate.now();
+	        // create_date가 당일이 아니면 업데이트 로직 수행
+	        if (dbDate == null || dbDate.isBefore(today)) {
+	            // 숨겨진 숫자 (secretNumber) 업데이트
+	            int secretNumber = RandomNumberUtil.generateUniqueThreeDigitNumber();
+	            pointDAO.setHideNum(memberId, secretNumber);
+	            gameInfo.setSecretNumber(secretNumber); // DTO에도 반영
 
-		// create_date가 당일이 아니면 업데이트 로직 수행
-		if (dbDate == null || dbDate.isBefore(today)) {
-			// 숨겨진 숫자 (secretNumber) 업데이트
-			int secretNumber = RandomNumberUtil.generateUniqueThreeDigitNumber();
-			pointDAO.setHideNum(memberId, secretNumber);
-			gameInfo.setSecretNumber(secretNumber); // DTO에도 반영
+	            // 게임 횟수 및 게임 종료 상태 초기화
+	            pointDAO.setGameNumAndGameOver(memberId);
+	            gameInfo.setGameCount(0);
+	            gameInfo.setGameOver(0);
 
-			// 게임 횟수 및 게임 종료 상태 초기화
-			pointDAO.setGameNumAndGameOver(memberId);
-			gameInfo.setGameCount(0);
-			gameInfo.setGameOver(0);
+	            // create_date를 오늘 날짜로 업데이트
+	            pointDAO.updateCreateDate(memberId);
+	            gameInfo.setCreateDate(today); // DTO에서도 날짜 갱신
+	        }
 
-			// create_date를 오늘 날짜로 업데이트
-			pointDAO.updateCreateDate(memberId);
-			gameInfo.setCreateDate(today); // DTO에서도 날짜 갱신
-		}
-
-		return gameInfo;
+	        return gameInfo;
+	    } catch (DataAccessException e) {
+	        // 그 외의 SQL 오류가 발생한 경우 로그에 기록
+	    	logger.error("システムエラーが発生しました", e);
+	        throw e;  // 예외를 상위 계층으로 전달하여, 컨트롤러에서 팝업 메시지로 처리하도록 함.
+	    }
 	}
+
 
 	public List<GameDTO> getResults(String memberId) {
 		List<GameDTO> resultInfos = resultDAO.getResult(memberId); // 여러 개의 결과 조회

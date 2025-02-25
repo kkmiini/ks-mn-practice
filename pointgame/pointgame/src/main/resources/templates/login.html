@@ -26,6 +26,14 @@
 			<p class="error-message" th:if="${error}" th:text="${error}" style="color: red;"></p>
 		</form>
 	</div>
+	
+	<!-- model에 focus 값이 있을 경우, 해당 id를 가진 입력 필드로 포커스 이동 -->
+	<script th:if="${focus != null}" th:inline="javascript">
+		/*<![CDATA[*/
+		document.getElementById([[${focus}]])?.focus();
+		/*]]>*/
+	</script>
+	
 </body>
 
 </html>
